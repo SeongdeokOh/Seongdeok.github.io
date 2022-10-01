@@ -1,5 +1,5 @@
 ---
-title: "Seongdeok Oh blog"
+title: "Seongdeok Oh"
 listing:
   contents: posts
   sort: "date desc"
