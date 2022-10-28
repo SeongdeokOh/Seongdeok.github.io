@@ -1,0 +1,47 @@
+---
+title: "EPPS6356 Assignment 4"
+author: "Seongdeok Oh"
+date: "2022-09-28"
+categories: [Data Visualization]
+---
+
+## Assignment 04
+
+### Data Visualization
+
+### Seongdeok Oh
+
+```{r}
+library(tidyverse)
+library(readxl)
+path <- "assignment02_happyPlanetData.xlsx"
+hpi <- read_xlsx(path, sheet = "1. All countries", range="A9:L161")
+summary(hpi)
+
+# import fonts
+library(extrafont)
+#font_import()
+loadfonts()
+
+hpi <- subset(hpi, select=-...4) # drop ...4 column
+names(hpi) = c('rank', 'country', 'iso', 'continent', 'population', 'life_exp', 'wellbeing', 'footprint', 'hpi', 'biocapacity', 'gdp') # rename columns
+class(hpi$gdp) = "double" # set gdp from character to double
+
+ggplot(hpi) + 
+  geom_dotplot(aes(x=hpi)) + 
+  facet_wrap(vars(continent)) + 
+  theme(text = element_text(family="Times"))
+
+test <- read_xlsx("test_data.xlsx")
+summary(test)
+ggplot(test) + 
+  geom_histogram(aes(x=height), 
+                 color='steelblue4', 
+                 fill='steelblue3', 
+                 breaks=unique(test$weight)) +
+  theme(text = element_text(family="Times"))
+```
+
+#### Synergy Report
+
+Our team members worked collaboratively to produce these plots. The bar chart with varying widths was spearheaded by Vikrant and Namrta, and the facetted charts were primarily done by Eli and Seongdeok. Additionally, fonts were added by Vikrant, titles were added by Lizzie, Eli merged these additions with the main plot code, and Namrta had the idea to use simple custom data to aid in plot creation.

@@ -1,0 +1,21 @@
+---
+title: "EPPS6356 Assignment 5"
+author: "Seongdeok Oh"
+date: "2022-10-25"
+categories: [Data Visualization]
+---
+
+```{r}
+library(foreign)
+library(dplyr)
+library(ggplot2)
+library(readr)
+speed_dating <- read_csv("speed-dating.csv")
+
+ggplot(data = speed_dating, aes(x = gender, fill = race)) + geom_bar(position = "dodge")
+ggplot(data = speed_dating, aes(x = gender, y = age, col = race)) + geom_point()
+
+ggplot(data = speed_dating, aes(x = gender, y = importance_same_race, col = race)) + geom_point()
+ggplot(data = speed_dating, aes(x = importance_same_race, fill = gender)) + geom_bar(position = "dodge")
+
+```
